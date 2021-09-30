@@ -5,40 +5,36 @@ const express = require("express");
 const router = express.Router();
 
 // this controller holds the functions / callback of how to handle the request when they come in
+// this gets the call to the correct file where the functions exist
 let controller = require("./controller");
 
 
-// POST   /record -body {word: "Test"}
-// will add the word to our table in the database
+// POST   
+// POST/record -body {ingredients: "name of ingredient", preptime: "time amount", instruction: "say what to do"}
+// will add a new ingredient to our ingredients table in the database
+
+// the route, (the folder we are going into)controller.addIngredient(the function we are calling)
 router.post("/record", controller.addIngredient); 
-// path, (the folder we are going into)controller.addWord(the function we are calling)
 
-// below was used to check if everything was working
-// before we had added the controller
 
-//router.post("/record", function(req, res){
-//    console.log("Inside the GET /record", req.body);
-//    res.json("In the Post");
-//})
+// LIST   
+// LIST/list   there is no body, we are just requesting the entire ingredients table
 
-// LIST
+// the route, (the folder we are going into)controller.listIngredients(the function we are calling)
 router.get("/list", controller.listIngredients); // 
 
 
 
-// GET /record
-// will list all of the previously recorded words
-router.get("/record", controller.getIngredients);// path, (the folder we are going into)controller.getWords(the function we are calling)
+// GET 
+// GET/record 
+// will list all of the ingredient in the ingredients table from the database
 
-// below was used to check to make sure everything was working
-// before we had added the controller
-
-//router.get("/record", function(req, res){
-//    console.log("inside the GET /record");
-//    res.json("In the GET");
-//})
+// the route, (the folder we are going into)controller.getIngredients(the function we are calling)
+router.get("/record", controller.getIngredients);
 
 
+// DELETE
+// 
 router.delete('/:ingredient', controller.deleteIngredientByIngredient)
 
 // select ingredient and then change instructions

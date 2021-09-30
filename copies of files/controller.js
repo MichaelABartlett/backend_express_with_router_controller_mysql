@@ -89,6 +89,15 @@ let listIngredients = function(req, res){
 
 // ****************************************************************
 
+// for your GET
+// issue the query: SELECT word FROM words
+// and process the results
+// if there is a error respone back with a 500 on the response
+// of ther is no error,
+//  1. instantiate an empty array
+//  2. loop thru the results of the query, and add every word that comes back to an array
+//  3. send array back to the client
+
 // GET/record
 let getIngredients = function(req, res){
     console.log("GET getIngredients()");
@@ -118,6 +127,10 @@ let getIngredients = function(req, res){
 
 
 // delete/:ingredient
+
+// the ':ingredient' is ment to be replaced in the request whith the specific ingredient you are looking to delete
+// This will delete the entire row that contains the ingredient that is requested
+// if the name entered does not exist or it is miss spelled then a error will be thrown
 
 let deleteIngredientByIngredient = (req, res) => {
 
