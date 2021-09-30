@@ -10,7 +10,7 @@ let controller = require("./controller");
 
 // POST   /record -body {word: "Test"}
 // will add the word to our table in the database
-router.post("/record", controller.addWord); 
+router.post("/record", controller.addIngredient); 
 // path, (the folder we are going into)controller.addWord(the function we are calling)
 
 // below was used to check if everything was working
@@ -21,11 +21,14 @@ router.post("/record", controller.addWord);
 //    res.json("In the Post");
 //})
 
+// LIST
+router.get("/list", controller.listIngredients); // 
+
 
 
 // GET /record
 // will list all of the previously recorded words
-router.get("/record", controller.getWords);// path, (the folder we are going into)controller.getWords(the function we are calling)
+router.get("/record", controller.getIngredients);// path, (the folder we are going into)controller.getWords(the function we are calling)
 
 // below was used to check to make sure everything was working
 // before we had added the controller
@@ -35,5 +38,10 @@ router.get("/record", controller.getWords);// path, (the folder we are going int
 //    res.json("In the GET");
 //})
 
+
+router.delete('/:ingredient', controller.deleteIngredientByIngredient)
+
+// select ingredient and then change instructions
+router.put("/put", controller.putIngredients)
 
 module.exports = router;

@@ -2,9 +2,10 @@
 
 const express = require("express");
 
-let env = require("dotenv").config();
+let env = require("dotenv").config(); // it does not need to be a variable
 
 let app = express();
+
 // enable the application to be able to parse JSON bodies in post/put
 app.use(express.json());
 

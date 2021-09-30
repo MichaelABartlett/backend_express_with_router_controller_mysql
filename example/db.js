@@ -24,4 +24,4 @@ connection.query("use " + process.env.MYSQL_DATABASE, function(error, rows){
     }
 });
 
-module.exports=connection;
+module.exports = connection;
