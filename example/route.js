@@ -10,7 +10,7 @@ let controller = require("./controller");
 
 
 // POST   
-// POST/record -body {ingredients: "name of ingredient", preptime: "time amount", instruction: "say what to do"}
+// POST/record -body {ingredient: "name of ingredient", preptime: "time amount", instruction: "say what to do"}
 // will add a new ingredient to our ingredients table in the database
 
 // the route, (the folder we are going into)controller.addIngredient(the function we are calling)
@@ -34,10 +34,20 @@ router.get("/record", controller.getIngredients);
 
 
 // DELETE
-// 
+// DELETE/:ingredient
+// will delete the ingredient that is entered in the place of ":ingredient"
+
+// the route, (the folder we are going into)controller.deleteIngredientByIngredient(the function we are calling)
 router.delete('/:ingredient', controller.deleteIngredientByIngredient)
 
-// select ingredient and then change instructions
+
+// PUT
+// PUT/put -body {ingredient: "name of ingredient you want to change instruction on", instruction: "give new instruction"}
+// select ingredient and then change instructions on that selected ingredient
+
+// the route, (the folder we are going into)controller.putIngredients(the function we are calling)
 router.put("/put", controller.putIngredients)
 
+
+// we are making the entire file available to the program
 module.exports = router;

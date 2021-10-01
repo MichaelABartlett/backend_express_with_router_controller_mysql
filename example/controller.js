@@ -8,16 +8,16 @@ let mysql = require("mysql");
 // Below is the layout of the object that will be getting added
     /**
      * { 
-     * 'ingredient',
-     * 'preptime',
-     * 'instruction'
+     * "ingredient": "name of ingredient to be added",
+     * "preptime": "git the amount of time needed to prep the ingredient",
+     * "instruction": "give the instuctions on how to prep the ingredient"
      * }
      */
 
 let addIngredient = function(req, res){
     console.log("Inside addIngredient");
 
-    // Each corisponding variable is saving the value of the request body that was entered into the odject
+    // Each corresponding variable is saving the value of the request body that was entered into the odject
     // This will be added into Postman as a json body
     let ingredient = req.body.ingredient;
     let preptime = req.body.preptime;
@@ -60,7 +60,7 @@ let addIngredient = function(req, res){
             console.log("Failed to add to database", error);
             res.sendStatus(500); // if something went wrong
         } else {
-            res.status(204).send("Ingredient added to database"); // letting client know everything went good
+            res.status(201).send("Ingredient added to database"); // letting client know everything went good
         }
     })
 }
@@ -134,7 +134,7 @@ let deleteIngredientByIngredient = (req, res) => {
             console.log("the error is: ", err)
             res.status(500).send("The ingredient did not exist or check spelling"); // why is it sending this
         } else {
-            res.status(204).send("The ingredient deleted is: ", deleteItem)
+            res.status(200).send("The ingredient deleted is: ", deleteItem)
             }
         })
   }
@@ -146,8 +146,8 @@ let deleteIngredientByIngredient = (req, res) => {
   // Below is the layout of the object that will be getting added
     /**
      * { 
-     * 'ingredient',
-     * 'instruction'
+     * "ingredient": "ingredient", // name of ingredient you want to coose
+     * "instruction": "instructions" // the new instruction that you want for the ingredient
      * }
      */
 
@@ -159,21 +159,20 @@ let putIngredients = (req, res) => {
 
     let ingredient = req.body.ingredient;
     let instruction = req.body.instruction;
-    console.log("ingredient: ", ingredient)
-    console.log("instructions: ", instruction)
+    //console.log("ingredient: ", ingredient)
+    //console.log("instructions: ", instruction)
 
-    // MySQL statement is below. The "?" are placeholders where the variables will be added
+    // MySQL statement is below. 
     let sql = `update ingredients set instruction = '${instruction}'  where ingredient =  '${ingredient}' `;
 
     db.query(sql, function(error, rows){
         if(error){
-           
             console.log("Failed to change to database", error);
             res.status(500).send("Something has went wrong, the instruction was not changed"); // if something went wrong
         } else {
             //console.log("sql: ",sql)
             //console.log("It got to the end, did anything happen?")
-            res.status(204).send(`The instruction for ${ingredient} has been changed`); // letting client know everything went good
+            res.status(201).send(`The instruction for ${ingredient} has been changed`); // letting client know everything went good
         }
     })
 }

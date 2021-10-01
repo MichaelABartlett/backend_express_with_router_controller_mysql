@@ -24,4 +24,5 @@ connection.query("use " + process.env.MYSQL_DATABASE, function(error, rows){
     }
 });
 
+// we are making the entire file available to the program 
 module.exports = connection;
