@@ -134,7 +134,7 @@ let deleteIngredientByIngredient = (req, res) => {
             console.log("the error is: ", err)
             res.status(500).send("The ingredient did not exist or check spelling"); // why is it sending this
         } else {
-            res.status(200).send("The ingredient deleted is: ", deleteItem)
+            res.status(200).send(`The ingredient ${deleteItem} was deleted`)
             }
         })
   }
